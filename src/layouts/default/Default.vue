@@ -1,6 +1,21 @@
+<script lang="ts" setup>
+  import { ref } from 'vue';
+  const drawer = ref(true);
+</script>
+
 <template>
   <v-layout class="rounded rounded-md">
-    <v-app-bar title="Application bar" density="comfortable" :color="`#0f0f0f`" :elevation="8">
+    <v-app-bar density="comfortable" :color="`#0f0f0f`" :elevation="8">
+      <template #prepend>
+        <v-app-bar-nav-icon variant="text" @click="drawer = !drawer">
+
+        </v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <router-link to="/" class="text-decoration-none text-white">
+            Vuetify Course
+          </router-link>
+        </v-toolbar-title>
+      </template>
       <template #append>
         <v-menu>
           <template v-slot:activator="{ props }">
@@ -15,9 +30,19 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer>
+    <v-navigation-drawer expand-on-hover rail v-model="drawer">
       <v-list>
-        <v-list-item title="Navigation drawer"></v-list-item>
+        <v-list>
+          <v-list-item prepend-avatar="https://avatars.githubusercontent.com/u/95689617?v=4" title="Gonzalo Quispe"
+            subtitle="ruddygonzqh@gmailcom"></v-list-item>
+        </v-list>
+
+        <v-divider></v-divider>
+
+        <v-list density="compact" nav>
+          <v-list-item prepend-icon="mdi-post-outline" title="Posts" :to="`/posts`" value="myfiles"></v-list-item>
+          <v-list-item prepend-icon="mdi-comment-outline" title="Comments" :to="`/comments`" value="shared"></v-list-item>
+        </v-list>
       </v-list>
     </v-navigation-drawer>
 
